@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ (url_for('static',filename='../static/css/style.css')) }}">
+    <title>Dojos</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <a href="/dojos">Home</a>
+            </nav>
+        </header>
+        <div class="contentDojos">
+            <div class="leftColumn">
+                <div class="addDojo">
+                    <h1>New Dojo</h1>
+                    <form action="/create_dojo" method="post">
+                        <div class="nameWrap">
+                            <label for="name">Name: </label>
+                            <input type="text" name="name" id="dojoName">
+                        </div>
+                        <button type="submit" onclick="checkDojoName(event)">Create Dojo</button>
+                    </form>
+                </div>
+            </div>
+            <div class="rightColumn">
+                <div class="dojoList">
+                    <h1>All Dojos</h1>
+                    <div class="dojoWrap">
+                        {% for dojo in dojos %}
+                        <a href="/dojos/{{ dojo.id }}"> {{ dojo.name }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <a href="/ninja" id="addNinja">Add a Ninja</a>
+            </div>
+        </div>
+    </div>
+    <script src="{{ (url_for('static',filename='../static/js/script.js')) }}"></script>
+</body>
+</html>

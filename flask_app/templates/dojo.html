@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ (url_for('static',filename='../static/css/style.css')) }}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <a href="/dojos">Home</a>
+            </nav>
+        </header>
+        <div class="contentDojo">
+            <h1>{{ dojo.name }}</h1>
+            <h2>Ninjas:</h2>
+            {% if ninjas[0].id != None: %}
+                <table>
+                    <tr>
+                        <th>ID</th>
+                        <th>Full Name</th>
+                        <th>Age</th>
+                        <th>Created</th>
+                    </tr>
+                        {% for ninja in ninjas %}
+                            <tr>
+                                <td>{{ ninja.id }}</td>
+                                <td>{{ ninja.first_name ~ ' ' ~ ninja.last_name }}</td>
+                                <td class="date">{{ ninja.age }}</td>
+                                <td class="date">{{ ninja.created_at.strftime("%b %d, %Y") }}</td>
+                            </tr>
+                        {% endfor %}
+                </table>
+            {% else %}
+                <h3>No ninjas!</h3>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

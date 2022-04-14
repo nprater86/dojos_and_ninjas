@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ (url_for('static',filename='../static/css/style.css')) }}">
+    <title>Ninjas</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <a href="/dojos">Home</a>
+            </nav>
+        </header>
+        <div class="contentNewNinja">
+            <h1>New Ninja</h1>
+            <form action="/create_ninja", method="post">
+                <div class="optionWrapper">
+                    <label for="dojo_id">Choose the Dojo</label>
+                    <select name="dojo_id" id="dojoSelect">
+                        <option value="default">Select Dojo</option>
+                        {% for dojo in dojos %}
+                        <option value="{{ dojo.id }}"> {{ dojo.name }} </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="optionWrapper">
+                    <label for="first_name">First Name:</label>
+                    <input type="text" name="first_name" id="first_name">
+                </div>
+                <div class="optionWrapper">
+                    <label for="last_name">Last Name:</label>
+                    <input type="text" name="last_name" id="last_name">
+                </div>
+                <div class="optionWrapper">
+                    <label for="age">Age: </label>
+                    <input type="number" name="age" id="age">
+                </div>
+                <button type="submit" onclick="checkNinjaVals(event)">Create</button>
+            </form>
+        </div>
+    </div>
+    <script src="{{ (url_for('static',filename='../static/js/script.js')) }}"></script>
+</body>
+</html>
